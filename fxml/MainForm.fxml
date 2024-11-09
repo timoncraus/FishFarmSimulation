@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="929.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainFormController">
+   <children>
+      <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="906.0" spacing="20.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Капитал (тыс. руб.):" />
+                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Сухой корм (кг):" textAlignment="CENTER" />
+                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="226.0" prefWidth="90.0" />
+            <VBox alignment="TOP_CENTER" prefHeight="226.0" prefWidth="525.0" style="-fx-border-color: black;">
+               <children>
+                  <Label text="Контракт:" />
+                  <Button mnemonicParsing="false" text="Заключить контракт" />
+                  <HBox alignment="CENTER" prefHeight="167.0" prefWidth="905.0" spacing="15.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="141.0" prefWidth="282.0" spacing="5.0" style="-fx-border-color: gray;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="274.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="105.0" text="Осталось недель:" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="63.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="138.0" text="Осталось купить корма:" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" />
+                                    <Label text="кг" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="138.0" text="Осталось продать рыбы:" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" />
+                                    <Label text="кг" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="66.0" text="Неустойка:" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" />
+                                    <Label text="тыс. руб." />
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" text="Выплатить неустойку" textAlignment="CENTER" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="175.0" spacing="5.0" style="-fx-border-color: gray;">
+                           <children>
+                              <HBox prefHeight="24.0" prefWidth="167.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Выберите кол-во корма:" />
+                                 </children>
+                              </HBox>
+                              <Slider />
+                              <HBox alignment="CENTER" prefHeight="32.0" prefWidth="167.0" spacing="5.0">
+                                 <children>
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                                    <Label text="корма" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
+                                 <children>
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                                    <Label text="тыс. руб." />
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" text="Купить" textAlignment="CENTER" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="7.0" />
+         </VBox.margin>
+      </HBox>
+      <VBox alignment="TOP_CENTER" prefHeight="805.0" prefWidth="909.0" style="-fx-border-color: black;">
+         <children>
+            <Label text="Пруды:" />
+            <ScrollPane prefHeight="827.0" prefWidth="907.0" vbarPolicy="NEVER">
+               <content>
+                  <HBox fx:id="pondsHBox" prefHeight="539.0" prefWidth="908.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <Button mnemonicParsing="false" text="Следущая неделя">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
