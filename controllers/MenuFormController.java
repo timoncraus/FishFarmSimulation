@@ -39,7 +39,8 @@ public class MenuFormController implements Initializable {
         numberOfFishes.setText("6000");
     }
     public void startSimulationClick(ActionEvent actionEvent) throws IOException {
-        // try {
+        try {
+            System.out.println(numberOfPounds.getSelectionModel().getSelectedItem());
             FishFarm fishFarm = new FishFarm(
                 Float.parseFloat(startMoney.getText()),
                 500f,
@@ -63,13 +64,13 @@ public class MenuFormController implements Initializable {
             stage.show();
 
             ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
-        // }
-        // catch(Exception e) {
-        //     Alert a = new Alert(AlertType.ERROR);
-        //     a.setTitle("Ошибка");
-        //     a.setHeaderText("Неправильный ввод значений");
-        //     a.setContentText(e.getMessage());
-        //     a.show();
-        // }
+        }
+        catch(Exception e) {
+            Alert a = new Alert(AlertType.ERROR);
+            a.setTitle("Ошибка");
+            a.setHeaderText("Неправильный ввод значений");
+            a.setContentText(e.getMessage());
+            a.show();
+        }
     }
 }

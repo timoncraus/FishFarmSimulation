@@ -3,13 +3,11 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import models.Pond;
 import models.FishFarm;
 
 public class MainFormController implements Initializable {
@@ -25,8 +23,8 @@ public class MainFormController implements Initializable {
     public void initData(FishFarm fishFarm) throws IOException {
         this.fishFarm = fishFarm;
 
-        
-        for(int i = 0; i <= this.fishFarm.ponds.size(); i++) {
+        int num = 1;
+        for (Pond pond : this.fishFarm.ponds) {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../fxml/PondForm.fxml"));
@@ -37,7 +35,9 @@ public class MainFormController implements Initializable {
             pondsHBox.getChildren().addAll(root);
 
             PondFormController controller = loader.getController();
-            
+            controller.initData(num, pond.fish.getType(), pond.fish.adult, pond.fish.young, pond.fish.currHunger, pond.pollution);
+
+            num++;
         }
 
     }

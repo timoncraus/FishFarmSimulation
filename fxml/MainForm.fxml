@@ -16,13 +16,13 @@
             <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Капитал (тыс. руб.):" />
-                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" />
+                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Сухой корм (кг):" textAlignment="CENTER" />
-                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" />
+                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
                </children>
             </VBox>
             <VBox prefHeight="226.0" prefWidth="90.0" />
@@ -37,27 +37,27 @@
                               <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="274.0" spacing="10.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="105.0" text="Осталось недель:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="63.0" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="63.0" style="-fx-opacity: 1;" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="138.0" text="Осталось купить корма:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" style="-fx-opacity: 1;" />
                                     <Label text="кг" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="138.0" text="Осталось продать рыбы:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" style="-fx-opacity: 1;" />
                                     <Label text="кг" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="66.0" text="Неустойка:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" style="-fx-opacity: 1;" />
                                     <Label text="тыс. руб." />
                                  </children>
                               </HBox>
@@ -77,13 +77,13 @@
                               <Slider />
                               <HBox alignment="CENTER" prefHeight="32.0" prefWidth="167.0" spacing="5.0">
                                  <children>
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                                     <Label text="корма" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                                  <children>
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                                     <Label text="тыс. руб." />
                                  </children>
                               </HBox>

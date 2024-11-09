@@ -11,40 +11,45 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="411.0" prefWidth="186.0" spacing="5.0" style="-fx-border-color: none;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PondFormController">
+<VBox alignment="CENTER" prefHeight="411.0" prefWidth="216.0" spacing="5.0" style="-fx-border-color: none;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PondFormController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Пруд №1" textAlignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="177.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Пруд №" textAlignment="CENTER" />
+            <Label fx:id="titleNum" alignment="CENTER" contentDisplay="CENTER" text="1" textAlignment="CENTER" />
+         </children>
+      </HBox>
       <VBox alignment="TOP_CENTER" prefHeight="107.0" prefWidth="229.0" spacing="5.0" style="-fx-border-color: gray;">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Тип:" />
-                  <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="95.0" />
+                  <TextField fx:id="type" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="109.0" style="-fx-opacity: 1;" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Взрослые:" />
-                  <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="60.0" />
+                  <TextField fx:id="adult" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="74.0" style="-fx-opacity: 1;" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Молодняк:" />
-                  <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="55.0" />
+                  <TextField fx:id="young" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="69.0" style="-fx-opacity: 1;" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Голод:" />
-                  <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="57.0" />
+                  <TextField fx:id="hunger" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="79.0" style="-fx-opacity: 1;" />
                   <Label text="кг" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Загрязненность:" />
-                  <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="37.0" />
+                  <TextField fx:id="pollution" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="43.0" style="-fx-opacity: 1;" />
                   <Label text="\%" />
                </children>
             </HBox>
@@ -56,7 +61,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="199.0" text="Почистить пруд" />
+      <Button mnemonicParsing="false" onAction="#cleanPond" prefHeight="26.0" prefWidth="199.0" text="Почистить пруд" />
       <Accordion>
          <panes>
             <TitledPane animated="false" prefHeight="22.0" prefWidth="177.0" text="Переместить рыбу">
@@ -66,10 +71,10 @@
                         <HBox prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                            <children>
                               <Label text="Выберите пруд:" />
-                              <ChoiceBox prefHeight="26.0" prefWidth="42.0" />
+                              <ChoiceBox fx:id="choosePond" prefHeight="26.0" prefWidth="42.0" />
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" text="Переместить рыбу" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#moveFish" text="Переместить рыбу" textAlignment="CENTER" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -82,13 +87,13 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-border-color: gray;">
                      <children>
                         <Label text="Выберите корм:" />
-                        <Slider />
+                        <Slider fx:id="chooseFood" />
                         <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0">
                            <children>
-                              <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayChosenFood" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" text="Покормить" />
+                        <Button mnemonicParsing="false" onAction="#feedFish" text="Покормить" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -96,31 +101,31 @@
                   </VBox>
                </content>
             </TitledPane>
-            <TitledPane animated="false" prefHeight="83.0" prefWidth="177.0" text="Заселить пруд">
+            <TitledPane animated="false" prefHeight="277.0" prefWidth="177.0" text="Заселить пруд">
                <content>
-                  <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="175.0" spacing="5.0" style="-fx-border-color: gray;">
+                  <VBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="175.0" spacing="5.0" style="-fx-border-color: gray;">
                      <children>
                         <Label text="Выберите тип рыбы:" />
-                        <ChoiceBox prefHeight="26.0" prefWidth="117.0" />
+                        <ChoiceBox fx:id="chooseType" prefHeight="26.0" prefWidth="117.0" />
                         <HBox prefHeight="24.0" prefWidth="167.0" spacing="5.0">
                            <children>
                               <Label text="Выберите кол-во мальков:" />
                            </children>
                         </HBox>
-                        <Slider />
+                        <Slider fx:id="chooseNewFishNum" />
                         <HBox alignment="CENTER" prefHeight="32.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayNewFishNum" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                               <Label text="мальков" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayNecesMoney" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                               <Label text="тыс. руб." />
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" text="Заселить пруд" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#populatePond" text="Заселить пруд" textAlignment="CENTER" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -137,26 +142,26 @@
                               <Label text="Выберите кол-во рыбы:" />
                            </children>
                         </HBox>
-                        <Slider />
+                        <Slider fx:id="chooseFishSale" />
                         <HBox alignment="CENTER" prefHeight="32.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayChosenAdult" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
                               <Label text="взрослых" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayChosenKg" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
                               <Label text="кг" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayRecieveMoney" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
                               <Label text="тыс. руб." />
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" text="Продать" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#sellFish" text="Продать" textAlignment="CENTER" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

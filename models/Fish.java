@@ -1,19 +1,22 @@
 package models;
 
 public class Fish {
-    int adult;
-    int young;
-    float currHunger;
+    public int adult;
+    public int young;
+    public float currHunger;
 
-    float adultWeight;
-    float youngWeight;
-    float adultFood;
-    float youngFood;
+    public float adultWeight;
+    public float youngWeight;
+    public float adultFood;
+    public float youngFood;
     
     public Fish(int adult, int young){
         this.adult = adult;
         this.young = young;
         this.currHunger = this.adultFood * this.adult + this.youngFood * this.young;
+    }
+    public String getType() {
+        return "Рыба";
     }
 }
 
