@@ -19,7 +19,7 @@ public class FishFarm {
         
         this.ponds = new ArrayList<>();
         Fish fish;
-        for(int i = 0; i <= numberOfPounds - 2; i++){
+        for(int i = 0; i <= numberOfPounds - 1; i++){
             int number = randomInt(0, 2);
             if(number == 0) {
                 fish = new Carp((int)(numberOfFishes*0.7), (int)(numberOfFishes*0.3));

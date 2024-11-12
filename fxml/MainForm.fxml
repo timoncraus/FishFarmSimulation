@@ -29,8 +29,8 @@
             <VBox alignment="TOP_CENTER" prefHeight="226.0" prefWidth="525.0" style="-fx-border-color: black;">
                <children>
                   <Label text="Контракт:" />
-                  <Button mnemonicParsing="false" text="Заключить контракт" />
-                  <HBox alignment="CENTER" prefHeight="167.0" prefWidth="905.0" spacing="15.0">
+                  <Button fx:id="signContractButton" mnemonicParsing="false" text="Заключить контракт" />
+                  <HBox fx:id="contractHBox" alignment="CENTER" prefHeight="167.0" prefWidth="905.0" spacing="15.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="141.0" prefWidth="282.0" spacing="5.0" style="-fx-border-color: gray;">
                            <children>

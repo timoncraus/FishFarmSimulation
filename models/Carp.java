@@ -1,15 +1,13 @@
 package models;
 
 public class Carp extends Fish{
-    float adultWeight = 1.8f;
-    float youngWeight = 0.8f;
-    float adultFood = 1f;
-    float youngFood = 0.5f;
+    public static float[] adultWF = {20f, 3.92f};
+    public static float[] youngWF = {6.5f, 35f};
 
     public Carp(int adult, int young) {
-        super(adult, young);
+        super(adult, young, adultWF, youngWF);
     }
-    
+
     public String getType() {
         return "Карп";
     }

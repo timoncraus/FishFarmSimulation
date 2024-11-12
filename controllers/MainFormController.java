@@ -6,12 +6,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import models.Pond;
 import models.FishFarm;
 
 public class MainFormController implements Initializable {
     public HBox pondsHBox;
+    public HBox contractHBox;
+    public Button signContractButton;
     FishFarm fishFarm;
 
     @Override
@@ -21,6 +24,8 @@ public class MainFormController implements Initializable {
 
 
     public void initData(FishFarm fishFarm) throws IOException {
+        contractHBox.setVisible(false);
+
         this.fishFarm = fishFarm;
 
         int num = 1;

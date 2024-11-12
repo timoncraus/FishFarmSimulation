@@ -4,20 +4,16 @@ public class Fish {
     public int adult;
     public int young;
     public float currHunger;
-
-    public float adultWeight;
-    public float youngWeight;
-    public float adultFood;
-    public float youngFood;
     
-    public Fish(int adult, int young){
+    public Fish(int adult, int young, float[] adultWF, float[] youngWF){
         this.adult = adult;
         this.young = young;
-        this.currHunger = this.adultFood * this.adult + this.youngFood * this.young;
+        this.currHunger = adultWF[1] * this.adult + youngWF[1] * this.young;
     }
     public String getType() {
         return "Рыба";
     }
 }
+
 
 
