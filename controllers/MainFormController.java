@@ -47,15 +47,18 @@ public class MainFormController implements Initializable {
 
             PondFormController controllerPond = loader.getController();
             if(pond.fishes != null) {
-                controllerPond.initData(num, 
-                pond.fishes.get(0).getType(), 
-                pond.getAdult(), 
-                pond.getYoung(), 
-                pond.getCurrHunger(), 
-                pond.pollution);
+                controllerPond.initData(
+                    pond,
+                    num, 
+                    pond.fishes.get(0).getType(), 
+                    pond.getAdult(), 
+                    pond.getYoung(), 
+                    pond.getCurrHunger(), 
+                    pond.pollution
+                );
             }
             else {
-                controllerPond.initEmpty(num);
+                controllerPond.initEmpty(pond, num);
             }
             pondControllers.add(controllerPond);
 
@@ -88,7 +91,7 @@ public class MainFormController implements Initializable {
         }
 
         for (int i=0; i < this.pondControllers.size(); i++) {
-            this.pondControllers.get(i).update(fishFarm, this.fishFarm.ponds.get(i));
+            this.pondControllers.get(i).update(fishFarm);
         }
     }
 }

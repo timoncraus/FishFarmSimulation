@@ -5,6 +5,9 @@ import java.util.Random;
 
 
 public class FishFarm {
+    public static float priceFishBuy = 3f;
+    public static float priceKgSold = 2f;
+
     public float money;
     public float dryFood;
     public Contract contract;
