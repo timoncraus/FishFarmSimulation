@@ -46,20 +46,8 @@ public class MainFormController implements Initializable {
             pondsHBox.getChildren().add(root);
 
             PondFormController controllerPond = loader.getController();
-            if(pond.fishes != null) {
-                controllerPond.initData(
-                    pond,
-                    num, 
-                    pond.fishes.get(0).getType(), 
-                    pond.getAdult(), 
-                    pond.getYoung(), 
-                    pond.getCurrHunger(), 
-                    pond.pollution
-                );
-            }
-            else {
-                controllerPond.initEmpty(pond, num);
-            }
+            controllerPond.initObjects(num, pond, fishFarm, controllerPond, pondControllers);
+
             pondControllers.add(controllerPond);
 
             num++;
@@ -74,9 +62,7 @@ public class MainFormController implements Initializable {
         dryFoodText.setText(this.fishFarm.dryFood + "");
 
         if(this.fishFarm.contract == null) {
-            if(bigContractBox.getChildren().contains(contractHBox)) {
-                bigContractBox.getChildren().remove(contractHBox);
-            }
+            bigContractBox.getChildren().remove(contractHBox);
             if(! bigContractBox.getChildren().contains(signContractButton)) {
                 bigContractBox.getChildren().add(signContractButton);
             }
@@ -85,13 +71,11 @@ public class MainFormController implements Initializable {
             if(! bigContractBox.getChildren().contains(contractHBox)) {
                 bigContractBox.getChildren().add(contractHBox);
             }
-            if(bigContractBox.getChildren().contains(signContractButton)) {
-                bigContractBox.getChildren().remove(signContractButton);
-            }
+            bigContractBox.getChildren().remove(signContractButton);
         }
 
         for (int i=0; i < this.pondControllers.size(); i++) {
-            this.pondControllers.get(i).update(fishFarm);
+            this.pondControllers.get(i).update();
         }
     }
 }

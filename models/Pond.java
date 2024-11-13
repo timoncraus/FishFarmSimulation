@@ -12,6 +12,7 @@ public class Pond {
     }
 
     public float getCurrHunger() {
+        if(fishes == null) return 0;
         float hunger = 0;
         for(Fish fish : fishes) {
             hunger += fish.currHunger;
@@ -20,6 +21,7 @@ public class Pond {
     }
 
     public int getAdult() {
+        if(fishes == null) return 0;
         int adult = 0;
         for(Fish fish : fishes) {
             if(fish.adult) {
@@ -30,6 +32,7 @@ public class Pond {
     }
 
     public int getYoung() {
+        if(fishes == null) return 0;
         int young = 0;
         for(Fish fish : fishes) {
             if(! fish.adult) {

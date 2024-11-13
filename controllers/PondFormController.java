@@ -56,7 +56,11 @@ public class PondFormController implements Initializable {
     public TextField displayChosenKg;
     public TextField displayRecieveMoney;
 
+    int num;
     Pond pond;
+    FishFarm fishFarm;
+    PondFormController pondFormController;
+    ArrayList<PondFormController> pondFormControllers;
 
 
     @Override
@@ -64,26 +68,52 @@ public class PondFormController implements Initializable {
 
     }
 
-    public void initData(Pond pond, int num, String type, int adult, int young, float hunger, float pollution) {
+    public void initObjects(int num, Pond pond, FishFarm fishFarm, PondFormController pondFormController, ArrayList<PondFormController> pondFormControllers) {
+        this.num = num;
         this.pond = pond;
-        this.titleNum.setText(num + "");
-        this.type.setText(type);
-        this.adult.setText(adult + "");
-        this.young.setText(young + "");
-        this.hunger.setText(hunger + "");
-        this.pollution.setText(pollution + "");
-        this.populatePondVBox.getChildren().removeAll(labelChooseType, chooseType);
-        this.poundBox.getChildren().remove(cleanPondButton);
+        this.fishFarm = fishFarm;
+        this.pondFormController = pondFormController;
+        this.pondFormControllers = pondFormControllers;
+
+        updateTexts();
     }
 
-    public void initEmpty(Pond pond, int num) {
-        this.pond = pond;
-        this.actionsAccordion.getPanes().removeAll(moveFishPane, feedFishPane, sellFishPane);
-        this.titleNum.setText(num + "");
-        this.type.setText("Пусто");
+    public void updateTexts() {
+        adult.setText(pond.getAdult() + "");
+        young.setText(pond.getYoung() + "");
+        hunger.setText(pond.getCurrHunger() + "");
+        pollution.setText(pond.pollution + "");
+
+        if(pond.fishes != null) {
+            titleNum.setText(num + "");
+            type.setText(pond.fishes.get(0).getType());
+            
+            populatePondVBox.getChildren().removeAll(labelChooseType, chooseType);
+            poundBox.getChildren().remove(cleanPondButton);
+
+            if(! actionsAccordion.getPanes().contains(moveFishPane) &&
+                        ! actionsAccordion.getPanes().contains(feedFishPane) &&
+                        ! actionsAccordion.getPanes().contains(sellFishPane)) {
+                actionsAccordion.getPanes().addAll(moveFishPane, feedFishPane, sellFishPane);
+            }
+
+            return;
+        }
+        if(! populatePondVBox.getChildren().contains(labelChooseType) &&
+                    ! populatePondVBox.getChildren().contains(chooseType) &&
+                    ! poundBox.getChildren().contains(cleanPondButton)) {
+            populatePondVBox.getChildren().add(0, labelChooseType);
+            populatePondVBox.getChildren().add(1, chooseType);
+            poundBox.getChildren().add(2, cleanPondButton);
+        }
+        actionsAccordion.getPanes().removeAll(moveFishPane, feedFishPane, sellFishPane);
+        titleNum.setText(num + "");
+        type.setText("Пусто");
     }
 
-    public void update(FishFarm fishFarm) {
+    public void update() {
+        updateTexts();
+
         if(pond.fishes != null) {
             ArrayList<Integer> choosePondList = new ArrayList<>();
             for(int i=0; i < fishFarm.ponds.size(); i++) {
@@ -145,11 +175,20 @@ public class PondFormController implements Initializable {
     }
 
     public void cleanPond() {
-
+        if(pond.fishes == null) {
+            pond.pollution = 0;
+        }
     }
 
     public void moveFish() {
-
+        int selIndex = choosePond.getSelectionModel().getSelectedItem() - 1;
+        Pond selPond = fishFarm.ponds.get(selIndex);
+        if(pond.fishes != null && selPond.fishes == null) {
+            selPond.fishes = pond.fishes;
+            pond.fishes = null;
+            pondFormControllers.get(selIndex).update();
+            pondFormController.update();
+        }
     }
 
     public void feedFish() {
