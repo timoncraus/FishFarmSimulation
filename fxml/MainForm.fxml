@@ -16,17 +16,17 @@
             <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Капитал (тыс. руб.):" />
-                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
+                  <TextField fx:id="moneyText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Сухой корм (кг):" textAlignment="CENTER" />
-                  <TextField disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
+                  <TextField fx:id="dryFoodText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
                </children>
             </VBox>
             <VBox prefHeight="226.0" prefWidth="90.0" />
-            <VBox alignment="TOP_CENTER" prefHeight="226.0" prefWidth="525.0" style="-fx-border-color: black;">
+            <VBox fx:id="bigContractBox" alignment="TOP_CENTER" prefHeight="226.0" prefWidth="525.0" style="-fx-border-color: black;">
                <children>
                   <Label text="Контракт:" />
                   <Button fx:id="signContractButton" mnemonicParsing="false" text="Заключить контракт" />

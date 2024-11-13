@@ -55,8 +55,8 @@ public class MenuFormController implements Initializable {
             
             Parent root = loader.load();
             
-            MainFormController controller = loader.getController();
-            controller.initData(fishFarm);
+            MainFormController controllerMain = loader.getController();
+            controllerMain.initData(fishFarm);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

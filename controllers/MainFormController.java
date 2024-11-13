@@ -2,19 +2,29 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import models.Pond;
 import models.FishFarm;
 
 public class MainFormController implements Initializable {
+    public TextField moneyText;
+    public TextField dryFoodText;
+
+    public VBox bigContractBox;
     public HBox pondsHBox;
     public HBox contractHBox;
     public Button signContractButton;
+
+    ArrayList<PondFormController> pondControllers = new ArrayList<>();
+
     FishFarm fishFarm;
 
     @Override
@@ -24,8 +34,6 @@ public class MainFormController implements Initializable {
 
 
     public void initData(FishFarm fishFarm) throws IOException {
-        contractHBox.setVisible(false);
-
         this.fishFarm = fishFarm;
 
         int num = 1;
@@ -35,19 +43,49 @@ public class MainFormController implements Initializable {
             loader.setLocation(getClass().getResource("../fxml/PondForm.fxml"));
             
             Parent root = loader.load();
-            
-            
-            pondsHBox.getChildren().addAll(root);
+            pondsHBox.getChildren().add(root);
 
-            PondFormController controller = loader.getController();
-            controller.initData(num, pond.fish.getType(), pond.fish.adult, pond.fish.young, pond.fish.currHunger, pond.pollution);
+            PondFormController controllerPond = loader.getController();
+            if(pond.fish != null) {
+                controllerPond.initData(num, pond.fish.getType(), pond.fish.adult, pond.fish.young, pond.fish.currHunger, pond.pollution);
+            }
+            else {
+                controllerPond.initEmpty(num);
+            }
+            pondControllers.add(controllerPond);
 
             num++;
         }
 
+        update();
+
     }
 
-    public void updateContractBox() {
+    public void update() {
+        moneyText.setText(this.fishFarm.money + "");
+        dryFoodText.setText(this.fishFarm.dryFood + "");
 
+        if(this.fishFarm.contract == null) {
+            if(bigContractBox.getChildren().contains(contractHBox)) {
+                bigContractBox.getChildren().remove(contractHBox);
+            }
+            if(! bigContractBox.getChildren().contains(signContractButton)) {
+                bigContractBox.getChildren().add(signContractButton);
+            }
+        }
+        else {
+            if(! bigContractBox.getChildren().contains(contractHBox)) {
+                bigContractBox.getChildren().add(contractHBox);
+            }
+            if(bigContractBox.getChildren().contains(signContractButton)) {
+                bigContractBox.getChildren().remove(signContractButton);
+            }
+        }
+
+        for (int i=0; i < this.pondControllers.size(); i++) {
+            if(this.fishFarm.ponds.get(i).fish != null) {
+                this.pondControllers.get(i).update(fishFarm, this.fishFarm.ponds.get(i).fish);
+            }
+        }
     }
 }
