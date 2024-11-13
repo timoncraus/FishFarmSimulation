@@ -46,8 +46,13 @@ public class MainFormController implements Initializable {
             pondsHBox.getChildren().add(root);
 
             PondFormController controllerPond = loader.getController();
-            if(pond.fish != null) {
-                controllerPond.initData(num, pond.fish.getType(), pond.fish.adult, pond.fish.young, pond.fish.currHunger, pond.pollution);
+            if(pond.fishes != null) {
+                controllerPond.initData(num, 
+                pond.fishes.get(0).getType(), 
+                pond.getAdult(), 
+                pond.getYoung(), 
+                pond.getCurrHunger(), 
+                pond.pollution);
             }
             else {
                 controllerPond.initEmpty(num);
@@ -83,9 +88,7 @@ public class MainFormController implements Initializable {
         }
 
         for (int i=0; i < this.pondControllers.size(); i++) {
-            if(this.fishFarm.ponds.get(i).fish != null) {
-                this.pondControllers.get(i).update(fishFarm, this.fishFarm.ponds.get(i).fish);
-            }
+            this.pondControllers.get(i).update(fishFarm, this.fishFarm.ponds.get(i));
         }
     }
 }

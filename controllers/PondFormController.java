@@ -13,8 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import models.Fish;
 import models.FishFarm;
+import models.Pond;
 
 public class PondFormController implements Initializable {
     public Label titleNum;
@@ -59,6 +59,7 @@ public class PondFormController implements Initializable {
         this.young.setText(young + "");
         this.hunger.setText(hunger + "");
         this.pollution.setText(pollution + "");
+        actionsAccordion.getPanes().remove(populatePondPane);
     }
 
     public void initEmpty(int num) {
@@ -67,19 +68,27 @@ public class PondFormController implements Initializable {
         this.type.setText("Пусто");
     }
 
-    public void update(FishFarm fishFarm, Fish fish) {
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i=0; i < fishFarm.ponds.size(); i++) {
-            if(fishFarm.ponds.get(i).fish == null) {
-                list.add(i+1);
+    public void update(FishFarm fishFarm, Pond pond) {
+        if(pond.fishes != null) {
+            ArrayList<Integer> list = new ArrayList<>();
+            for(int i=0; i < fishFarm.ponds.size(); i++) {
+                if(fishFarm.ponds.get(i).fishes == null) {
+                    list.add(i+1);
+                }
             }
-        }
-        choosePond.setItems(FXCollections.observableArrayList(list));
-        choosePond.getSelectionModel().select(0);
+            choosePond.setItems(FXCollections.observableArrayList(list));
+            choosePond.getSelectionModel().select(0);
 
-        chooseFood.setMin(0);
-        chooseFood.setMax(Math.min(fishFarm.dryFood, fish.currHunger));
-        updateFeedFishSlider();
+            chooseFood.setMin(0);
+            chooseFood.setMax(Math.min(fishFarm.dryFood, pond.getCurrHunger()));
+            updateFeedFishSlider();
+        }
+        else {
+            //chooseNewFishNum.setMin(0);
+            //chooseNewFishNum.setMax(Math.min(fishFarm.dryFood, fish.currHunger));
+            //updateFeedFishSlider();
+        }
+        
     }
 
     public void updateFeedFishSlider() {

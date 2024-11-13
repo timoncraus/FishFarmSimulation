@@ -40,10 +40,9 @@ public class MenuFormController implements Initializable {
     }
     public void startSimulationClick(ActionEvent actionEvent) throws IOException {
         try {
-            System.out.println(numberOfPounds.getSelectionModel().getSelectedItem());
             FishFarm fishFarm = new FishFarm(
                 Float.parseFloat(startMoney.getText()),
-                500f,
+                50000f,
                 numberOfPounds.getSelectionModel().getSelectedItem(),
                 Integer.parseInt(numberOfFishes.getText()),
                 Float.parseFloat(fishDeathFrom.getText()),

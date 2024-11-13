@@ -1,19 +1,18 @@
 package models;
 
 public class Fish {
-    public int adult;
-    public int young;
+    public float weight;
+    public float needForFood;
     public float currHunger;
+    public Boolean adult;
     
-    public Fish(int adult, int young, float[] adultWF, float[] youngWF){
+    public Fish(float[] listWF, Boolean adult){
+        this.weight = listWF[0];
+        this.needForFood = listWF[1];
+        this.currHunger = listWF[1];
         this.adult = adult;
-        this.young = young;
-        this.currHunger = adultWF[1] * this.adult + youngWF[1] * this.young;
     }
     public String getType() {
         return "Рыба";
     }
 }
-
-
-

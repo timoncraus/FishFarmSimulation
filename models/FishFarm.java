@@ -18,19 +18,34 @@ public class FishFarm {
         this.contract = null;
         
         this.ponds = new ArrayList<>();
-        Fish fish;
         for(int i = 0; i <= numberOfPounds - 2; i++){
+            ArrayList<Fish> fishes = new ArrayList<>();
             int number = randomInt(0, 2);
             if(number == 0) {
-                fish = new Carp((int)(numberOfFishes*0.7), (int)(numberOfFishes*0.3));
+                for(int j=0; j < numberOfFishes*0.7; j++) {
+                    fishes.add(new Carp(true));
+                }
+                for(int j=0; j < numberOfFishes*0.3; j++) {
+                    fishes.add(new Carp(false));
+                }
             }
             else if(number == 1) {
-                fish = new Roach((int)(numberOfFishes*0.7), (int)(numberOfFishes*0.3));
+                for(int j=0; j < numberOfFishes*0.7; j++) {
+                    fishes.add(new Roach(true));
+                }
+                for(int j=0; j < numberOfFishes*0.3; j++) {
+                    fishes.add(new Roach(false));
+                }
             }
             else {
-                fish = new Trout((int)(numberOfFishes*0.7), (int)(numberOfFishes*0.3));
+                for(int j=0; j < numberOfFishes*0.7; j++) {
+                    fishes.add(new Trout(true));
+                }
+                for(int j=0; j < numberOfFishes*0.3; j++) {
+                    fishes.add(new Trout(false));
+                }
             }
-            this.ponds.add(new Pond(fish));
+            this.ponds.add(new Pond(fishes));
         }
         this.ponds.add(new Pond(null));
         this.fishDeathFrom = fishDeathFrom;
