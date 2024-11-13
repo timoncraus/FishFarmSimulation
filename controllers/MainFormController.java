@@ -23,7 +23,7 @@ public class MainFormController implements Initializable {
     public HBox contractHBox;
     public Button signContractButton;
 
-    ArrayList<PondFormController> pondControllers = new ArrayList<>();
+    public ArrayList<PondFormController> pondControllers = new ArrayList<>();
 
     FishFarm fishFarm;
 
@@ -46,7 +46,7 @@ public class MainFormController implements Initializable {
             pondsHBox.getChildren().add(root);
 
             PondFormController controllerPond = loader.getController();
-            controllerPond.initObjects(num, pond, fishFarm, controllerPond, pondControllers);
+            controllerPond.initObjects(num, pond, fishFarm, controllerPond, this);
 
             pondControllers.add(controllerPond);
 

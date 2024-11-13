@@ -60,21 +60,19 @@ public class PondFormController implements Initializable {
     Pond pond;
     FishFarm fishFarm;
     PondFormController pondFormController;
-    ArrayList<PondFormController> pondFormControllers;
-
+    MainFormController controllerMain;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
-    public void initObjects(int num, Pond pond, FishFarm fishFarm, PondFormController pondFormController, ArrayList<PondFormController> pondFormControllers) {
+    public void initObjects(int num, Pond pond, FishFarm fishFarm, PondFormController pondFormController, MainFormController controllerMain) {
         this.num = num;
         this.pond = pond;
         this.fishFarm = fishFarm;
         this.pondFormController = pondFormController;
-        this.pondFormControllers = pondFormControllers;
-
+        this.controllerMain = controllerMain;
         updateTexts();
     }
 
@@ -113,47 +111,64 @@ public class PondFormController implements Initializable {
 
     public void update() {
         updateTexts();
-
         if(pond.fishes != null) {
-            ArrayList<Integer> choosePondList = new ArrayList<>();
-            for(int i=0; i < fishFarm.ponds.size(); i++) {
-                if(fishFarm.ponds.get(i).fishes == null) {
-                    choosePondList.add(i+1);
-                }
-            }
-            choosePond.setItems(FXCollections.observableArrayList(choosePondList));
-            choosePond.getSelectionModel().select(0);
-
-            chooseFood.setMin(0);
-            chooseFood.setMax(Math.min(fishFarm.dryFood, pond.getCurrHunger()));
-            updateFeedFishSlider();
-
-            chooseFishSale.setMin(0);
-            chooseFishSale.setMax(pond.getAdult());
-            updateFishSaleSlider();
+            setChoosePond();
+            setFeedFishSlider();
+            setFishSaleSlider();
         }
         else {
-            ArrayList<String> chooseTypeList = new ArrayList<>();
-            Fish[] kindsFishes = {new Carp(true), new Roach(true), new Trout(true)};
-            for(int i=0; i < kindsFishes.length; i++) {
-                chooseTypeList.add(kindsFishes[i].getType());
-            }
-            chooseType.setItems(FXCollections.observableArrayList(chooseTypeList));
-            chooseType.getSelectionModel().select(0);
+            setChooseType();
         }
-        chooseNewFishNum.setMin(0);
-        chooseNewFishNum.setMax(fishFarm.money / FishFarm.priceFishBuy);
-        updatePopulatePondSlider();
-        
+        setPopulatePondSlider();
+    }
+
+    public void setChoosePond() {
+        ArrayList<Integer> choosePondList = new ArrayList<>();
+        for(int i=0; i < fishFarm.ponds.size(); i++) {
+            if(fishFarm.ponds.get(i).fishes == null) {
+                choosePondList.add(i+1);
+            }
+        }
+        choosePond.setItems(FXCollections.observableArrayList(choosePondList));
+        choosePond.getSelectionModel().select(0);
+    }
+
+    public void setFeedFishSlider() {
+        chooseFood.setMin(0);
+        chooseFood.setMax(Math.min(fishFarm.dryFood, pond.getCurrHunger()));
+        chooseFood.valueChangingProperty().addListener((obs, oldVal, newVal) -> {
+            updateFeedFishSlider();
+        });
+        updateFeedFishSlider();
     }
 
     public void updateFeedFishSlider() {
+       
+        if(chooseFood.getMax() == 0) {
+            displayChosenFood.setText("0.0");
+            return;
+        }
+        if(Double.isNaN(chooseFood.getValue())) {
+            chooseFood.setValue(chooseFood.getMax());
+        }
         displayChosenFood.setText(format(chooseFood.getValue()));
+    }
+
+    public void setPopulatePondSlider() {
+        chooseNewFishNum.setMin(0);
+        chooseNewFishNum.setMax(fishFarm.money / FishFarm.priceFishBuy);
+        updatePopulatePondSlider();
     }
 
     public void updatePopulatePondSlider() {
         displayNewFishNum.setText(format(chooseNewFishNum.getValue()));
         displayNecesMoney.setText(format(chooseNewFishNum.getValue() * FishFarm.priceFishBuy));
+    }
+
+    public void setFishSaleSlider() {
+        chooseFishSale.setMin(0);
+        chooseFishSale.setMax(pond.getAdult());
+        updateFishSaleSlider();
     }
 
     public void updateFishSaleSlider() {
@@ -174,6 +189,16 @@ public class PondFormController implements Initializable {
 
     }
 
+    public void setChooseType() {
+        ArrayList<String> chooseTypeList = new ArrayList<>();
+        Fish[] kindsFishes = {new Carp(true), new Roach(true), new Trout(true)};
+        for(int i=0; i < kindsFishes.length; i++) {
+            chooseTypeList.add(kindsFishes[i].getType());
+        }
+        chooseType.setItems(FXCollections.observableArrayList(chooseTypeList));
+        chooseType.getSelectionModel().select(0);
+    }
+
     public void cleanPond() {
         if(pond.fishes == null) {
             pond.pollution = 0;
@@ -186,13 +211,50 @@ public class PondFormController implements Initializable {
         if(pond.fishes != null && selPond.fishes == null) {
             selPond.fishes = pond.fishes;
             pond.fishes = null;
-            pondFormControllers.get(selIndex).update();
+            controllerMain.pondControllers.get(selIndex).update();
             pondFormController.update();
         }
     }
 
     public void feedFish() {
+        if(chooseFood.getValue() <= 0 || Double.isNaN(chooseFood.getValue())) {
+            return;
+        }
+        fishFarm.dryFood -= chooseFood.getValue();
+        double food, foodAdult, foodYoung;
+        do {
+            food = (double)chooseFood.getValue();
+            foodAdult = (pond.getAdultHunger() / pond.getCurrHunger()) * food;
+            foodYoung = (pond.getYoungHunger() / pond.getCurrHunger()) * food;
 
+            for(Fish fish : pond.fishes) {
+                if(foodAdult + foodYoung < pond.getAdultMaxHunger() && foodAdult + foodYoung >= pond.getYoungMaxHunger()) {
+                    foodYoung = foodAdult;
+                    foodAdult = 0;
+                }
+                else if(foodAdult + foodYoung < pond.getYoungMaxHunger() && foodAdult + foodYoung >= pond.getAdultMaxHunger()) {
+                    foodAdult = foodYoung;
+                    foodYoung = 0;
+                }
+                if(fish.currHunger == 0) {
+                    continue;
+                }
+                if(fish.adult && foodAdult - fish.currHunger >= 0) {
+                    foodAdult -= fish.currHunger;
+                    fish.currHunger = 0;
+                }
+                if(! fish.adult && foodYoung - fish.currHunger >= 0){
+                    foodYoung -= fish.currHunger;
+                    fish.currHunger = 0;
+                }
+            }
+            
+            fishFarm.dryFood += foodAdult + foodYoung;
+            controllerMain.update();
+            if(pond.getYoungMaxHunger() == 0 && pond.getAdultMaxHunger() == 0) {
+                break;
+            }
+        } while(foodAdult + foodYoung >= pond.getYoungMaxHunger() || foodAdult + foodYoung >= pond.getAdultMaxHunger());
     }
 
     public void populatePond() {

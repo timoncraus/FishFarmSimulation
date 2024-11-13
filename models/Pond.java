@@ -20,6 +20,50 @@ public class Pond {
         return hunger;
     }
 
+    public float getAdultHunger() {
+        if(fishes == null) return 0;
+        float hunger = 0;
+        for(Fish fish : fishes) {
+            if(fish.adult) {
+                hunger += fish.currHunger;
+            }
+        }
+        return hunger;
+    }
+
+    public float getAdultMaxHunger() {
+        if(fishes == null) return 0;
+        float maxHunger = 0;
+        for(Fish fish : fishes) {
+            if(fish.adult) {
+                maxHunger = Math.max(maxHunger, fish.currHunger);
+            }
+        }
+        return maxHunger;
+    }
+
+    public float getYoungHunger() {
+        if(fishes == null) return 0;
+        float hunger = 0;
+        for(Fish fish : fishes) {
+            if(! fish.adult) {
+                hunger += fish.currHunger;
+            }
+        }
+        return hunger;
+    }
+
+    public float getYoungMaxHunger() {
+        if(fishes == null) return 0;
+        float maxHunger = 0;
+        for(Fish fish : fishes) {
+            if(! fish.adult) {
+                maxHunger = Math.max(maxHunger, fish.currHunger);
+            }
+        }
+        return maxHunger;
+    }
+
     public int getAdult() {
         if(fishes == null) return 0;
         int adult = 0;
