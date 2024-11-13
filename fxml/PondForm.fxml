@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="411.0" prefWidth="216.0" spacing="5.0" style="-fx-border-color: none;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PondFormController">
+<VBox fx:id="poundBox" alignment="CENTER" prefHeight="411.0" prefWidth="216.0" spacing="5.0" style="-fx-border-color: none;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PondFormController">
    <children>
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="177.0">
          <children>
@@ -90,7 +90,7 @@
                         <Slider fx:id="chooseFood" onMouseDragged="#updateFeedFishSlider" />
                         <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="10.0">
                            <children>
-                              <TextField fx:id="displayChosenFood" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
+                              <TextField fx:id="displayChosenFood" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="76.0" style="-fx-opacity: 1;" />
                               <Label text="кг" />
                            </children>
                         </HBox>
@@ -102,18 +102,18 @@
                   </VBox>
                </content>
             </TitledPane>
-            <TitledPane fx:id="populatePondPane" animated="false" prefHeight="234.0" prefWidth="206.0" text="Заселить пруд">
+            <TitledPane fx:id="populatePondPane" animated="false" prefHeight="238.0" prefWidth="206.0" text="Заселить пруд">
                <content>
-                  <VBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="175.0" spacing="5.0" style="-fx-border-color: gray;">
+                  <VBox fx:id="populatePondVBox" alignment="TOP_CENTER" prefHeight="205.0" prefWidth="175.0" spacing="5.0" style="-fx-border-color: gray;">
                      <children>
-                        <Label text="Выберите тип рыбы:" />
+                        <Label fx:id="labelChooseType" text="Выберите тип рыбы:" />
                         <ChoiceBox fx:id="chooseType" prefHeight="26.0" prefWidth="117.0" />
                         <HBox prefHeight="24.0" prefWidth="167.0" spacing="5.0">
                            <children>
                               <Label text="Выберите кол-во мальков:" />
                            </children>
                         </HBox>
-                        <Slider fx:id="chooseNewFishNum" />
+                        <Slider fx:id="chooseNewFishNum" onMouseDragged="#updatePopulatePondSlider" />
                         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="192.0" spacing="5.0">
                            <children>
                               <TextField fx:id="displayNewFishNum" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
@@ -143,22 +143,22 @@
                               <Label text="Выберите кол-во рыбы:" />
                            </children>
                         </HBox>
-                        <Slider fx:id="chooseFishSale" />
+                        <Slider fx:id="chooseFishSale" onMouseDragged="#updateFishSaleSlider" />
                         <HBox alignment="CENTER" prefHeight="32.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField fx:id="displayChosenAdult" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayChosenAdult" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                               <Label text="взрослых" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField fx:id="displayChosenKg" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayChosenKg" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                               <Label text="кг" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                            <children>
-                              <TextField fx:id="displayRecieveMoney" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" />
+                              <TextField fx:id="displayRecieveMoney" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                               <Label text="тыс. руб." />
                            </children>
                         </HBox>
