@@ -1,9 +1,9 @@
 package controllers;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Accordion;
@@ -61,6 +61,7 @@ public class PondFormController implements Initializable {
     FishFarm fishFarm;
     PondFormController pondFormController;
     MainFormController controllerMain;
+    final Fish[] kindsFishes = {new Carp(true), new Roach(true), new Trout(true)};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -169,8 +170,8 @@ public class PondFormController implements Initializable {
     }
 
     public void updatePopulatePondSlider() {
-        displayNewFishNum.setText(format(chooseNewFishNum.getValue()));
-        displayNecesMoney.setText(format(chooseNewFishNum.getValue() * FishFarm.priceFishBuy));
+        displayNewFishNum.setText((int)chooseNewFishNum.getValue() + "");
+        displayNecesMoney.setText((int)(chooseNewFishNum.getValue()) * FishFarm.priceFishBuy + "");
     }
 
     public void setFishSaleSlider() {
@@ -199,7 +200,6 @@ public class PondFormController implements Initializable {
 
     public void setChooseType() {
         ArrayList<String> chooseTypeList = new ArrayList<>();
-        Fish[] kindsFishes = {new Carp(true), new Roach(true), new Trout(true)};
         for(int i=0; i < kindsFishes.length; i++) {
             chooseTypeList.add(kindsFishes[i].getType());
         }
@@ -265,8 +265,26 @@ public class PondFormController implements Initializable {
         } while(foodAdult + foodYoung >= pond.getYoungMaxHunger() || foodAdult + foodYoung >= pond.getAdultMaxHunger());
     }
 
-    public void populatePond() {
-
+    public void populatePond() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+        Class<? extends Fish> chosenFishClass = Fish.class;
+        if(pond.fishes != null) {
+            chosenFishClass = pond.fishes.get(0).getClass();
+        }
+        else {
+            for(Fish fish : kindsFishes) {
+                if(fish.getType() == chooseType.getSelectionModel().getSelectedItem()) {
+                    chosenFishClass = fish.getClass();
+                }
+            }
+            pond.fishes = new ArrayList<>();
+        }
+        int newFishNum = (int)chooseNewFishNum.getValue();
+        for(int i=0; i < newFishNum; i++) {
+            Fish fish = chosenFishClass.getConstructor(Boolean.class).newInstance(false);
+            pond.fishes.add(fish);
+        }
+        fishFarm.money -= newFishNum * FishFarm.priceFishBuy;
+        controllerMain.update();
     }
 
     public void sellFish() {
