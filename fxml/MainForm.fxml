@@ -13,13 +13,13 @@
    <children>
       <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="906.0" spacing="20.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
+            <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="226.0" prefWidth="135.0" spacing="10.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Капитал (тыс. руб.):" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="194.0" text="Капитал (тыс. руб.):" />
                   <TextField fx:id="moneyText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
+            <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Сухой корм (кг):" textAlignment="CENTER" />
                   <TextField fx:id="dryFoodText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />

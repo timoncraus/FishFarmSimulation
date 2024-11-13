@@ -80,6 +80,13 @@ public class PondFormController implements Initializable {
         adult.setText(pond.getAdult() + "");
         young.setText(pond.getYoung() + "");
         hunger.setText(pond.getCurrHunger() + "");
+        if(pond.getCurrHunger() > 0) {
+            hunger.setStyle("-fx-opacity: 1;  -fx-text-inner-color: red;");
+        }
+        else {
+            hunger.setStyle("-fx-opacity: 1;  -fx-text-inner-color: black;");
+        }
+        
         pollution.setText(pond.pollution + "");
 
         if(pond.fishes != null) {
@@ -92,9 +99,10 @@ public class PondFormController implements Initializable {
             if(! actionsAccordion.getPanes().contains(moveFishPane) &&
                         ! actionsAccordion.getPanes().contains(feedFishPane) &&
                         ! actionsAccordion.getPanes().contains(sellFishPane)) {
-                actionsAccordion.getPanes().addAll(moveFishPane, feedFishPane, sellFishPane);
+                actionsAccordion.getPanes().add(0, moveFishPane);
+                actionsAccordion.getPanes().add(1, feedFishPane);
+                actionsAccordion.getPanes().add(3, sellFishPane);
             }
-
             return;
         }
         if(! populatePondVBox.getChildren().contains(labelChooseType) &&
