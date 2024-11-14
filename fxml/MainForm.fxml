@@ -13,90 +13,84 @@
    <children>
       <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="906.0" spacing="20.0">
          <children>
-            <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="226.0" prefWidth="135.0" spacing="10.0">
+            <VBox prefHeight="117.0" prefWidth="135.0" spacing="15.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="194.0" text="Капитал (тыс. руб.):" />
-                  <TextField fx:id="moneyText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="100.0" prefWidth="112.0" spacing="10.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Сухой корм (кг):" textAlignment="CENTER" />
-                  <TextField fx:id="dryFoodText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
+                  <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="67.0" prefWidth="135.0" spacing="10.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="194.0" text="Капитал (тыс. руб.):" />
+                        <TextField fx:id="moneyText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="74.0" prefWidth="135.0" spacing="10.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Сухой корм (кг):" textAlignment="CENTER" />
+                        <TextField fx:id="dryFoodText" disable="true" prefHeight="31.0" prefWidth="0.0" style="-fx-opacity: 1;" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
             <VBox prefHeight="226.0" prefWidth="90.0" />
-            <VBox fx:id="bigContractBox" alignment="TOP_CENTER" prefHeight="226.0" prefWidth="525.0" style="-fx-border-color: black;">
+            <VBox fx:id="bigContractBox" alignment="TOP_CENTER" prefHeight="215.0" prefWidth="563.0" style="-fx-border-color: black;">
                <children>
                   <Label text="Контракт:" />
-                  <Button fx:id="signContractButton" mnemonicParsing="false" text="Заключить контракт" />
-                  <HBox fx:id="contractHBox" alignment="CENTER" prefHeight="167.0" prefWidth="905.0" spacing="15.0">
+                  <Button fx:id="signContractButton" mnemonicParsing="false" onAction="#openContractWindow" text="Заключить контракт" />
+                  <HBox fx:id="contractHBox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="518.0" spacing="5.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="141.0" prefWidth="282.0" spacing="5.0" style="-fx-border-color: gray;">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="323.0" spacing="2.0" style="-fx-border-color: gray;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="274.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="302.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="105.0" text="Осталось недель:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="63.0" style="-fx-opacity: 1;" />
+                                    <Label prefHeight="18.0" prefWidth="150.0" text="Осталось недель:" />
+                                    <TextField fx:id="weeksLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="314.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="138.0" text="Осталось купить корма:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" style="-fx-opacity: 1;" />
+                                    <Label prefHeight="18.0" prefWidth="172.0" text="Осталось купить корма:" />
+                                    <TextField fx:id="buyFoodLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="84.0" style="-fx-opacity: 1;" />
                                     <Label text="кг" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="298.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="138.0" text="Осталось продать рыбы:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" style="-fx-opacity: 1;" />
+                                    <Label prefHeight="18.0" prefWidth="167.0" text="Осталось продать рыбы:" />
+                                    <TextField fx:id="sellFishLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="81.0" style="-fx-opacity: 1;" />
                                     <Label text="кг" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="272.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="294.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="66.0" text="Неустойка:" />
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="61.0" style="-fx-opacity: 1;" />
+                                    <Label prefHeight="18.0" prefWidth="104.0" text="Неустойка:" />
+                                    <TextField fx:id="penaltyLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="84.0" style="-fx-opacity: 1;" />
                                     <Label text="тыс. руб." />
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" text="Выплатить неустойку" textAlignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#payPenaltyContract" text="Выплатить неустойку" textAlignment="CENTER" />
                            </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="175.0" spacing="5.0" style="-fx-border-color: gray;">
+                        <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="191.0" spacing="5.0" style="-fx-border-color: gray;">
                            <children>
-                              <HBox prefHeight="24.0" prefWidth="167.0" spacing="5.0">
-                                 <children>
-                                    <Label text="Выберите кол-во корма:" />
-                                 </children>
-                              </HBox>
-                              <Slider />
+                              <Label prefHeight="23.0" prefWidth="186.0" text="Выберите кол-во корма:" wrapText="true" />
+                              <Slider fx:id="chooseFoodBuyContract" onMouseDragged="#updateChooseFoodBuySlider" />
                               <HBox alignment="CENTER" prefHeight="32.0" prefWidth="167.0" spacing="5.0">
                                  <children>
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
-                                    <Label text="корма" />
+                                    <TextField fx:id="displayChosenFoodContract" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="102.0" style="-fx-opacity: 1;" />
+                                    <Label text="кг" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="33.0" prefWidth="167.0" spacing="5.0">
                                  <children>
-                                    <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
+                                    <TextField fx:id="displayMoneyContract" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="99.0" style="-fx-opacity: 1;" />
                                     <Label text="тыс. руб." />
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" text="Купить" textAlignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#buyFoodContract" text="Купить" textAlignment="CENTER" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </VBox>
                      </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

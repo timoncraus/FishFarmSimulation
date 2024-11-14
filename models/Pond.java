@@ -85,4 +85,26 @@ public class Pond {
         }
         return young;
     }
+
+    public int getTotalAdultKg() {
+        if(fishes == null) return 0;
+        int totalWeight = 0;
+        for(Fish fish : fishes) {
+            if(fish.adult) {
+                totalWeight += fish.weight;
+            }
+        }
+        return totalWeight;
+    }
+
+    public int getTotalYoungKg() {
+        if(fishes == null) return 0;
+        int totalWeight = 0;
+        for(Fish fish : fishes) {
+            if(! fish.adult) {
+                totalWeight += fish.weight;
+            }
+        }
+        return totalWeight;
+    }
 }

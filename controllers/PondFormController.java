@@ -90,6 +90,8 @@ public class PondFormController implements Initializable {
         
         pollution.setText(pond.pollution + "");
 
+        
+
         if(pond.fishes != null) {
             titleNum.setText(num + "");
             type.setText(pond.fishes.get(0).getType());
@@ -98,11 +100,18 @@ public class PondFormController implements Initializable {
             poundBox.getChildren().remove(cleanPondButton);
 
             if(! actionsAccordion.getPanes().contains(moveFishPane) &&
-                        ! actionsAccordion.getPanes().contains(feedFishPane) &&
-                        ! actionsAccordion.getPanes().contains(sellFishPane)) {
+                        ! actionsAccordion.getPanes().contains(feedFishPane)) {
                 actionsAccordion.getPanes().add(0, moveFishPane);
                 actionsAccordion.getPanes().add(1, feedFishPane);
-                actionsAccordion.getPanes().add(3, sellFishPane);
+            }
+
+            if(fishFarm.contract != null) {
+                if(! actionsAccordion.getPanes().contains(sellFishPane)) {
+                    actionsAccordion.getPanes().add(3, sellFishPane);
+                }
+            }
+            else {
+                actionsAccordion.getPanes().remove(sellFishPane);
             }
             return;
         }
@@ -159,18 +168,18 @@ public class PondFormController implements Initializable {
         if(Double.isNaN(chooseFood.getValue())) {
             chooseFood.setValue(chooseFood.getMax());
         }
-        displayChosenFood.setText(format(chooseFood.getValue()));
+        displayChosenFood.setText(MainFormController.format(chooseFood.getValue()));
     }
 
     public void setPopulatePondSlider() {
         chooseNewFishNum.setMin(0);
-        chooseNewFishNum.setMax(fishFarm.money / FishFarm.priceFishBuy);
+        chooseNewFishNum.setMax(fishFarm.money / fishFarm.priceFishBuy);
         updatePopulatePondSlider();
     }
 
     public void updatePopulatePondSlider() {
         displayNewFishNum.setText((int)chooseNewFishNum.getValue() + "");
-        displayNecesMoney.setText((int)(chooseNewFishNum.getValue()) * FishFarm.priceFishBuy + "");
+        displayNecesMoney.setText((int)(chooseNewFishNum.getValue()) * fishFarm.priceFishBuy + "");
     }
 
     public void setFishSaleSlider() {
@@ -202,8 +211,8 @@ public class PondFormController implements Initializable {
                 count++;
             }
         }
-        displayChosenKg.setText(format(weight));
-        displayRecieveMoney.setText(format(weight * FishFarm.priceKgSold));
+        displayChosenKg.setText(MainFormController.format(weight));
+        displayRecieveMoney.setText(MainFormController.format(weight * fishFarm.priceKgSold));
     }
 
     public void setChooseType() {
@@ -238,7 +247,9 @@ public class PondFormController implements Initializable {
         }
         fishFarm.dryFood -= chooseFood.getValue();
         double food, foodAdult, foodYoung;
+        int count = 0;
         do {
+            count++;
             food = (double)chooseFood.getValue();
             foodAdult = (pond.getAdultHunger() / pond.getCurrHunger()) * food;
             foodYoung = (pond.getYoungHunger() / pond.getCurrHunger()) * food;
@@ -270,7 +281,11 @@ public class PondFormController implements Initializable {
             if(pond.getYoungMaxHunger() == 0 && pond.getAdultMaxHunger() == 0) {
                 break;
             }
+            if(count > 9) {
+                break;
+            }
         } while(foodAdult + foodYoung >= pond.getYoungMaxHunger() || foodAdult + foodYoung >= pond.getAdultMaxHunger());
+        
     }
 
     public void populatePond() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -291,7 +306,7 @@ public class PondFormController implements Initializable {
             Fish fish = chosenFishClass.getConstructor(Boolean.class).newInstance(false);
             pond.fishes.add(fish);
         }
-        fishFarm.money -= newFishNum * FishFarm.priceFishBuy;
+        fishFarm.money -= newFishNum * fishFarm.priceFishBuy;
         controllerMain.update();
     }
 
@@ -307,11 +322,9 @@ public class PondFormController implements Initializable {
                 count++;
             }
         }
-        fishFarm.money += weight * FishFarm.priceKgSold;
+        fishFarm.money += weight * fishFarm.priceKgSold;
+        fishFarm.contract.kgFishLeft -= weight;
+        fishFarm.contract.kgFishLeft = Math.max(0, fishFarm.contract.kgFishLeft);
         controllerMain.update();
-    }
-
-    public static String format(double num) {
-        return String.format("%.1f", num).replace(",", ".");
     }
 }

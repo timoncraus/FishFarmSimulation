@@ -9,21 +9,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuFormController">
    <children>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
          <children>
-            <Label text="Начальный капитал (тыс. руб.):">
+            <Label text="Начальный капитал:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField prefHeight="26.0" prefWidth="85.0" fx:id="startMoney">
+            <TextField fx:id="startMoney" prefHeight="26.0" prefWidth="85.0">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
+            <Label text="тыс. руб.">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />
@@ -43,7 +47,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="26.0" prefWidth="45.0" fx:id="fishDeathFrom">
+                  <TextField fx:id="fishDeathFrom" prefHeight="26.0" prefWidth="45.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -62,7 +66,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="26.0" prefWidth="45.0" fx:id="fishDeathTo">
+                  <TextField fx:id="fishDeathTo" prefHeight="26.0" prefWidth="45.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -86,7 +90,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ChoiceBox prefHeight="26.0" prefWidth="81.0" fx:id="numberOfPounds"/>
+            <ChoiceBox fx:id="numberOfPounds" prefHeight="26.0" prefWidth="81.0" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -99,7 +103,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField prefHeight="26.0" prefWidth="90.0" fx:id="numberOfFishes">
+            <TextField fx:id="numberOfFishes" prefHeight="26.0" prefWidth="90.0">
                <font>
                   <Font size="16.0" />
                </font>
@@ -109,7 +113,7 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="276.0" text="Начать симуляцию" onAction="#startSimulationClick" >
+      <Button mnemonicParsing="false" onAction="#startSimulationClick" prefHeight="37.0" prefWidth="276.0" text="Начать симуляцию">
          <font>
             <Font size="16.0" />
          </font>

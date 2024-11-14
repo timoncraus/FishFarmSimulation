@@ -5,8 +5,8 @@ import java.util.Random;
 
 
 public class FishFarm {
-    public static float priceFishBuy = 3f;
-    public static float priceKgSold = 2f;
+    public float priceFishBuy = 3f;
+    public float priceKgSold = 2f;
 
     public float money;
     public float dryFood;
@@ -14,6 +14,11 @@ public class FishFarm {
     public ArrayList<Pond> ponds;
     public float fishDeathFrom;
     public float fishDeathTo;
+
+    public float totalAdultKgStartWeek;
+    public float totalYoungKgStartWeek;
+    public float totalAdultKgEndWeek;
+    public float totalYoungKgEndWeek;
 
     public FishFarm(float startMoney, float startDryFood, int numberOfPounds, int numberOfFishes, float fishDeathFrom, float fishDeathTo){
         this.money = startMoney;
@@ -53,6 +58,15 @@ public class FishFarm {
         this.ponds.add(new Pond(null));
         this.fishDeathFrom = fishDeathFrom;
         this.fishDeathTo = fishDeathTo;
+        
+        this.totalAdultKgStartWeek = 0;
+        this.totalYoungKgStartWeek = 0;
+        for(Pond pond : this.ponds) {
+            this.totalAdultKgStartWeek += pond.getTotalAdultKg();
+            this.totalYoungKgStartWeek += pond.getTotalYoungKg();
+        }
+        this.totalAdultKgEndWeek = this.totalAdultKgStartWeek;
+        this.totalYoungKgEndWeek = this.totalYoungKgStartWeek;
     }
 
     public static int randomInt(int min, int max) {

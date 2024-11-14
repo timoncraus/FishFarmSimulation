@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContractFormController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <Label text="Количество недель:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="numberOfWeeks" prefHeight="26.0" prefWidth="81.0" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <Label text="Покупка корма каждую неделю суммой:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="moneyFoodEveryWeek" prefHeight="26.0" prefWidth="85.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label text="тыс. руб.">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <Label text="Продажа рыбы каждую неделю:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="kgFishEveryWeek" prefHeight="26.0" prefWidth="85.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label text="кг">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Label prefHeight="47.0" prefWidth="442.0" text="В случае невыполнения обязательств управляющий будет обязан выплатить неустойку: 1 тыс. руб. за каждый непроданный килограмм рыбы" textAlignment="CENTER" wrapText="true" />
+      <Label prefHeight="46.0" prefWidth="430.0" text="Контракт фиксирует стоимости кормов и рыбы на каждые очередные 3 недели контрактного периода" textAlignment="CENTER" wrapText="true" />
+      <Button mnemonicParsing="false" onAction="#signContractClick" prefHeight="37.0" prefWidth="276.0" text="Заключить контракт">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
