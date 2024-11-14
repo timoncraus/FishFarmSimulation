@@ -152,7 +152,6 @@ public class PondFormController implements Initializable {
     }
 
     public void updateFeedFishSlider() {
-       
         if(chooseFood.getMax() == 0) {
             displayChosenFood.setText("0.0");
             return;
@@ -176,16 +175,26 @@ public class PondFormController implements Initializable {
 
     public void setFishSaleSlider() {
         chooseFishSale.setMin(0);
-        chooseFishSale.setMax(pond.getAdult());
+        chooseFishSale.setMax(pond.getAdult() - 1);
         updateFishSaleSlider();
     }
 
     public void updateFishSaleSlider() {
-        displayChosenAdult.setText(format(chooseFishSale.getValue()));
+        if(chooseFishSale.getMax() == 0) {
+            displayChosenAdult.setText("0");
+            displayChosenKg.setText("0.0");
+            displayRecieveMoney.setText("0.0");
+            return;
+        }
+        if(Double.isNaN(chooseFishSale.getValue())) {
+            chooseFishSale.setValue((int)chooseFishSale.getMax());
+        }
+
+        displayChosenAdult.setText((int)chooseFishSale.getValue() + "");
         float weight = 0;
         int count = 0;
         for(Fish fish : pond.fishes) {
-            if(count >= chooseFishSale.getValue()) {
+            if(count >= (int)chooseFishSale.getValue()) {
                 break;
             }
             if(fish.adult) {
@@ -195,7 +204,6 @@ public class PondFormController implements Initializable {
         }
         displayChosenKg.setText(format(weight));
         displayRecieveMoney.setText(format(weight * FishFarm.priceKgSold));
-
     }
 
     public void setChooseType() {
@@ -256,9 +264,9 @@ public class PondFormController implements Initializable {
                     fish.currHunger = 0;
                 }
             }
-            
             fishFarm.dryFood += foodAdult + foodYoung;
             controllerMain.update();
+
             if(pond.getYoungMaxHunger() == 0 && pond.getAdultMaxHunger() == 0) {
                 break;
             }
@@ -288,10 +296,22 @@ public class PondFormController implements Initializable {
     }
 
     public void sellFish() {
-
+        int chosenAdult = (int)chooseFishSale.getValue();
+        int count = 0;
+        float weight = 0;
+        for(int i=0; count<chosenAdult; i++) {
+            Fish fish = pond.fishes.get(i - count);
+            if(fish.adult) {
+                weight += fish.weight;
+                pond.fishes.remove(fish);
+                count++;
+            }
+        }
+        fishFarm.money += weight * FishFarm.priceKgSold;
+        controllerMain.update();
     }
 
     public static String format(double num) {
-        return String.format("%.1f", num);
+        return String.format("%.1f", num).replace(",", ".");
     }
 }
