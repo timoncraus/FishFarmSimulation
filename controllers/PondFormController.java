@@ -228,6 +228,7 @@ public class PondFormController implements Initializable {
         if(pond.fishes == null) {
             pond.pollution = 0;
         }
+        update();
     }
 
     public void moveFish() {

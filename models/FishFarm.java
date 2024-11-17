@@ -165,14 +165,20 @@ public class FishFarm {
         // Подсчет взрослеющей молодой рыбы
         ArrayList<Integer> maturingYoungFish = new ArrayList<>();
         for(Pond pond : ponds) {
-            if(pond.fishes == null) maturingYoungFish.add(0);
+            if(pond.fishes == null) {
+                maturingYoungFish.add(0);
+                continue;
+            } 
             maturingYoungFish.add((int)(matureRateYoung * pond.getYoung()));
         }
 
         // Подсчет рождающейся новой рыбы
         ArrayList<Integer> beingBornNewFish = new ArrayList<>();
         for(Pond pond : ponds) {
-            if(pond.fishes == null) beingBornNewFish.add(0);
+            if(pond.fishes == null) {
+                beingBornNewFish.add(0);
+                continue;
+            } 
             beingBornNewFish.add((int)(birthRateYoung * pond.getAdult()));
         }
 

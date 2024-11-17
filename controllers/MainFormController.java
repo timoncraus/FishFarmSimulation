@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -110,6 +112,18 @@ public class MainFormController implements Initializable {
             }
             else {
                 nextWeekButton.setDisable(false);
+            }
+
+            float totalKg = 0;
+            for(Pond pond : this.fishFarm.ponds) {
+                totalKg += pond.getTotalAdultKg();
+            }
+            if(this.fishFarm.money + (totalKg * this.fishFarm.priceKgSold) < this.fishFarm.contract.penaltyLeft) {
+                Alert a = new Alert(AlertType.INFORMATION);
+                a.setTitle("Информация");
+                a.setHeaderText("Вы банкрот.");
+                a.setContentText("Сколько бы вы ни продали рыбы, вам не хватит денег, чтобы оплатить неустойку контракта.");
+                a.show();
             }
         }
 

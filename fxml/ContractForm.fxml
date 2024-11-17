@@ -68,8 +68,8 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Label prefHeight="47.0" prefWidth="442.0" text="В случае невыполнения обязательств управляющий будет обязан выплатить неустойку: 1 тыс. руб. за каждый непроданный килограмм рыбы" textAlignment="CENTER" wrapText="true" />
-      <Label prefHeight="46.0" prefWidth="430.0" text="Контракт фиксирует стоимости кормов и рыбы на каждые очередные 3 недели контрактного периода" textAlignment="CENTER" wrapText="true" />
+      <Label prefHeight="75.0" prefWidth="446.0" text="В случае невыполнения обязательств управляющий будет обязан выплатить неустойку: 1 тыс. руб. за каждый непроданный килограмм рыбы" textAlignment="CENTER" wrapText="true" />
+      <Label prefHeight="48.0" prefWidth="430.0" text="Контракт фиксирует стоимости кормов и рыбы на каждые очередные 3 недели контрактного периода" textAlignment="CENTER" wrapText="true" />
       <Button mnemonicParsing="false" onAction="#signContractClick" prefHeight="37.0" prefWidth="276.0" text="Заключить контракт">
          <font>
             <Font size="16.0" />

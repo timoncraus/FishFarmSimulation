@@ -36,31 +36,31 @@
                   <Button fx:id="signContractButton" mnemonicParsing="false" onAction="#openContractWindow" text="Заключить контракт" />
                   <HBox fx:id="contractHBox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="518.0" spacing="5.0">
                      <children>
-                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="323.0" spacing="2.0" style="-fx-border-color: gray;">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="358.0" spacing="2.0" style="-fx-border-color: gray;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="302.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="348.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="150.0" text="Осталось недель:" />
+                                    <Label prefHeight="18.0" prefWidth="114.0" text="Осталось недель:" />
                                     <TextField fx:id="weeksLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="70.0" style="-fx-opacity: 1;" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="314.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="347.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="172.0" text="Осталось купить корма:" />
+                                    <Label prefHeight="18.0" prefWidth="156.0" text="Осталось купить корма:" />
                                     <TextField fx:id="buyFoodLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="84.0" style="-fx-opacity: 1;" />
-                                    <Label text="кг" />
+                                    <Label prefHeight="18.0" prefWidth="83.0" text="тыс. руб." />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="298.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="345.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="167.0" text="Осталось продать рыбы:" />
+                                    <Label prefHeight="18.0" prefWidth="163.0" text="Осталось продать рыбы:" />
                                     <TextField fx:id="sellFishLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="81.0" style="-fx-opacity: 1;" />
                                     <Label text="кг" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="294.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="26.0" prefWidth="343.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="104.0" text="Неустойка:" />
+                                    <Label prefHeight="18.0" prefWidth="82.0" text="Неустойка:" />
                                     <TextField fx:id="penaltyLeft" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="84.0" style="-fx-opacity: 1;" />
                                     <Label text="тыс. руб." />
                                  </children>
@@ -112,7 +112,7 @@
             </ScrollPane>
          </children>
       </VBox>
-      <Button mnemonicParsing="false" onAction="#nextWeek" fx:id="nextWeekButton" text="Следующая неделя">
+      <Button fx:id="nextWeekButton" mnemonicParsing="false" onAction="#nextWeek" text="Следующая неделя">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
