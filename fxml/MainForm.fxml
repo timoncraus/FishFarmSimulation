@@ -107,12 +107,12 @@
             <Label text="Пруды:" />
             <ScrollPane prefHeight="827.0" prefWidth="907.0" vbarPolicy="NEVER">
                <content>
-                  <HBox fx:id="pondsHBox" prefHeight="539.0" prefWidth="908.0" />
+                  <HBox fx:id="pondsHBox" prefHeight="680.0" prefWidth="908.0" />
                </content>
             </ScrollPane>
          </children>
       </VBox>
-      <Button mnemonicParsing="false" text="Следущая неделя">
+      <Button mnemonicParsing="false" onAction="#nextWeek" fx:id="nextWeekButton" text="Следующая неделя">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>

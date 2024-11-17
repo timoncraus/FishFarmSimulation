@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -34,6 +35,8 @@ public class MainFormController implements Initializable {
     public HBox pondsHBox;
     public HBox contractHBox;
     public Button signContractButton;
+
+    public Button nextWeekButton;
 
     public ArrayList<PondFormController> pondControllers = new ArrayList<>();
 
@@ -101,11 +104,20 @@ public class MainFormController implements Initializable {
                 penaltyLeft.setStyle("-fx-opacity: 1;  -fx-text-inner-color: black;");
             }
             setChooseFoodBuySlider();
+
+            if(this.fishFarm.contract.penaltyLeft > 0) {
+                nextWeekButton.setDisable(true);
+            }
+            else {
+                nextWeekButton.setDisable(false);
+            }
         }
 
         for (int i=0; i < this.pondControllers.size(); i++) {
             this.pondControllers.get(i).update();
         }
+
+        
     }
 
     public void setChooseFoodBuySlider() {
@@ -160,6 +172,11 @@ public class MainFormController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Оформление контракта");
         stage.showAndWait();
+    }
+
+    public void nextWeek() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
+        fishFarm.nextWeek();
+        update();
     }
 
     public static String format(double num) {

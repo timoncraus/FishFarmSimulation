@@ -8,6 +8,7 @@ public class Contract {
     public float kgFishEveryWeek;
     public float penaltyForEachKg;
     public int numWeeksPrices;
+    public int leftNumWeeksPrices;
 
     public int leftWeeks;
     public float moneyFoodLeft;
@@ -22,16 +23,40 @@ public class Contract {
         this.totalWeeks = totalWeeks;
         this.leftWeeks = this.totalWeeks;
         this.moneyFoodEveryWeek = moneyFoodEveryWeek;
-        this.moneyFoodLeft = this.moneyFoodEveryWeek;
         this.kgFishEveryWeek = kgFishEveryWeek;
-        this.kgFishLeft = this.kgFishEveryWeek;
+        this.thingsLeftUpdate();
+
         this.penaltyForEachKg = penaltyForEachKg;
         this.penaltyLeftUpdate();
+
         this.numWeeksPrices = numWeeksPrices;
-        this.priceFood = this.priceKgFoodBuy * (this.fishFarm.totalYoungKgStartWeek / 2 + this.fishFarm.totalAdultKgStartWeek);
+        this.leftNumWeeksPrices = this.numWeeksPrices;
+        this.priceFoodUpdate();
     }
 
     public void penaltyLeftUpdate() {
         this.penaltyLeft = this.kgFishLeft * this.penaltyForEachKg;
+    }
+
+    public void thingsLeftUpdate() {
+        this.kgFishLeft = this.kgFishEveryWeek;
+        this.moneyFoodLeft = this.moneyFoodEveryWeek;
+        
+    }
+
+    public void priceFoodUpdate() {
+        this.priceFood = this.priceKgFoodBuy * (this.fishFarm.totalYoungKgStartWeek / 2 + this.fishFarm.totalAdultKgStartWeek);
+    }
+    
+
+    public void nextWeek() {
+        leftNumWeeksPrices--;
+        if(leftNumWeeksPrices < 0) {
+            priceFoodUpdate();
+            leftNumWeeksPrices = numWeeksPrices;
+        }
+        thingsLeftUpdate();
+        penaltyLeftUpdate();
+        this.leftWeeks -= 1;
     }
 }

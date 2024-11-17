@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 
 public class Pond {
-    public float pollution;
+    public float pollution; // от 0 до 100
     public ArrayList<Fish> fishes;
     
     public Pond(ArrayList<Fish> fishes){

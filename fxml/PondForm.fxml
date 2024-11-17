@@ -102,7 +102,7 @@
                   </VBox>
                </content>
             </TitledPane>
-            <TitledPane fx:id="populatePondPane" animated="false" prefHeight="238.0" prefWidth="206.0" text="Заселить пруд">
+            <TitledPane fx:id="populatePondPane" animated="false" prefHeight="236.0" prefWidth="206.0" text="Заселить пруд">
                <content>
                   <VBox fx:id="populatePondVBox" alignment="TOP_CENTER" prefHeight="205.0" prefWidth="175.0" spacing="5.0" style="-fx-border-color: gray;">
                      <children>
