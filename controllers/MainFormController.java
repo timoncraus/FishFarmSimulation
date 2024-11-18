@@ -118,7 +118,7 @@ public class MainFormController implements Initializable {
             for(Pond pond : this.fishFarm.ponds) {
                 totalKg += pond.getTotalAdultKg();
             }
-            if(this.fishFarm.money + (totalKg * this.fishFarm.priceKgSold) < this.fishFarm.contract.penaltyLeft) {
+            if(this.fishFarm.money + 2*(totalKg * this.fishFarm.priceKgSold) < this.fishFarm.contract.penaltyLeft) {
                 Alert a = new Alert(AlertType.INFORMATION);
                 a.setTitle("Информация");
                 a.setHeaderText("Вы банкрот.");
